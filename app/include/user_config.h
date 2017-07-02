@@ -59,7 +59,7 @@ extern void luaL_assertfail(const char *file, int line, const char *message);
 #define NO_INTR_CODE inline
 #endif
 
-//#define CLIENT_SSL_ENABLE
+#define CLIENT_SSL_ENABLE
 //#define MD2_ENABLE
 #define SHA2_ENABLE
 
