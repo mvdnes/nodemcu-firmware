@@ -294,6 +294,7 @@ static pmbedtls_msg mbedtls_msg_new(void)
 			mbedtls_net_init(&msg->fd);
 			mbedtls_ssl_init(&msg->ssl);
 			mbedtls_ssl_config_init(&msg->conf);		
+			mbedtls_ssl_conf_max_frag_len(&msg->conf, MBEDTLS_SSL_MAX_FRAG_LEN_4096);
 			mbedtls_ctr_drbg_init(&msg->ctr_drbg);
 			mbedtls_entropy_init(&msg->entropy);
 		} else{
@@ -332,6 +333,7 @@ static void mbedtls_msg_server_step(pmbedtls_msg msg)
 		mbedtls_net_init(&msg->fd);
 		mbedtls_ssl_init(&msg->ssl);
 		mbedtls_ssl_config_init(&msg->conf);
+		mbedtls_ssl_conf_max_frag_len(&msg->conf, MBEDTLS_SSL_MAX_FRAG_LEN_4096);
 		mbedtls_ctr_drbg_init(&msg->ctr_drbg);
 		mbedtls_entropy_init(&msg->entropy);
 	}	
