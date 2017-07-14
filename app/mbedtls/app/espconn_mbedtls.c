@@ -67,7 +67,7 @@ static pmbedtls_parame mbedtls_parame_new(size_t capacity)
 	pmbedtls_parame rb = (pmbedtls_parame)os_zalloc(sizeof(mbedtls_parame));
 	if (rb && capacity != 0){
 		rb->parame_datalen = capacity;
-		rb->parame_data = (uint8*)os_zalloc(rb->parame_datalen + 1);
+		rb->parame_data = (char*)os_zalloc(rb->parame_datalen + 1);
 		if (rb->parame_data){
 
 		} else{
@@ -969,16 +969,15 @@ exit:
 static void
 mbedtls_thread(os_event_t *events)
 {
-	int ret = ESP_OK;
 	bool active_flag = false;
 	espconn_msg *Threadmsg = NULL;
 	espconn_msg *ListMsg = NULL;
 	pmbedtls_msg TLSmsg = NULL;
 	Threadmsg = (espconn_msg *)events->par;
-	lwIP_REQUIRE_ACTION(Threadmsg,exit,ret = ERR_ARG);
+	lwIP_REQUIRE_ACTION(Threadmsg,exit,);
 	TLSmsg = Threadmsg->pssl;
-	lwIP_REQUIRE_ACTION(TLSmsg,exit,ret = ERR_ARG);
-	lwIP_REQUIRE_ACTION(Threadmsg->pespconn,exit,ret = ERR_ARG);
+	lwIP_REQUIRE_ACTION(TLSmsg,exit,);
+	lwIP_REQUIRE_ACTION(Threadmsg->pespconn,exit,);
 
 	/*find the active connection*/
 	for (ListMsg = plink_active; ListMsg != NULL; ListMsg = ListMsg->pnext){

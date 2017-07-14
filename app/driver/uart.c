@@ -166,6 +166,7 @@ uart_tx_one_char(uint8 uart, uint8 TxChar)
     return OK;
 }
 
+#if 0
 /******************************************************************************
  * FunctionName : uart1_write_char
  * Description  : Internal used function
@@ -189,6 +190,7 @@ uart1_write_char(char c)
     uart_tx_one_char(UART1, c);
   }
 }
+#endif
 
 /******************************************************************************
  * FunctionName : uart0_tx_buffer

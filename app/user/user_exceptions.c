@@ -111,7 +111,7 @@ die:
  * its proverbial foot. We do save the EXCCAUSE_LOAD_STORE_ERROR handler so that
  * we can chain to it above.
  */
-exception_handler_fn TEXT_SECTION_ATTR
+void TEXT_SECTION_ATTR
 __wrap__xtos_set_exception_handler (uint32_t cause, exception_handler_fn fn)
 {
   if (cause != EXCCAUSE_LOAD_STORE_ERROR)

@@ -4,8 +4,6 @@
 #include "driver/uart.h"
 #include "c_types.h"
 
-LOCAL os_timer_t readline_timer;
-
 // UartDev is defined and initialized in rom code.
 extern UartDevice UartDev;
 
@@ -30,6 +28,8 @@ bool uart_getc(char *c){
 }
 
 #if 0
+LOCAL os_timer_t readline_timer;
+
 int readline4lua(const char *prompt, char *buffer, int length){
     char ch;
     int line_position;

@@ -40,8 +40,8 @@ static const char mem_debug_file[] ICACHE_RODATA_ATTR = __FILE__;
 #include "sys/espconn_mbedtls.h"
 
 ssl_opt ssl_option = {
-		{NULL, ESPCONN_SECURE_DEFAULT_SIZE, 0, false, 0, false},
-		{NULL, ESPCONN_SECURE_DEFAULT_SIZE, 0, false, 0, false},
+		{NULL, ESPCONN_SECURE_DEFAULT_SIZE, {0, false}, {0, false}},
+		{NULL, ESPCONN_SECURE_DEFAULT_SIZE, {0, false}, {0, false}},
 		0
 };
 
@@ -367,20 +367,6 @@ bool ICACHE_FLASH_ATTR espconn_secure_set_default_private_key(const uint8* priva
 		return false;
 
 	return mbedtls_load_default_obj(0, ESPCONN_PK, private_key, length);
-}
-
-/******************************************************************************
- * FunctionName : espconn_secure_delete
- * Description  : delete the secure server host
- * Parameters   : espconn -- espconn to set for client or server
- * Returns      : result
-*******************************************************************************/
-sint8 ICACHE_FLASH_ATTR espconn_secure_delete(struct espconn *espconn)
-{
-	sint8 error = ESPCONN_OK;
-	error = espconn_ssl_delete(espconn);
-	
-	return error;
 }
 
 bool espconn_secure_obj_load(int obj_type, uint32 flash_sector, uint16 length)

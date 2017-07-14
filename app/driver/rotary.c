@@ -37,7 +37,7 @@
 #define GET_READ_STATUS(d)	(d->queue[d->read_offset & (QUEUE_SIZE - 1)])
 #define ADVANCE_IF_POSSIBLE(d)  if (d->read_offset < d->write_offset) { d->read_offset++; }
 
-#define STATUS_IS_PRESSED(x)	((x & 0x80000000) != 0)
+#define STATUS_IS_PRESSED(x)	(((x) & 0x80000000) != 0)
 
 typedef struct {
   int8_t   phase_a_pin;
@@ -213,7 +213,6 @@ int rotary_setup(uint32_t channel, int phase_a, int phase_b, int press, task_han
   }
 
   data[channel] = d;
-  int i;
 
   d->tasknumber = tasknumber;
 
