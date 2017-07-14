@@ -3,8 +3,14 @@
 #undef MBEDTLS_HAVE_ASM
 #undef MBEDTLS_HAVE_SSE2
 
+#if 0
 #define MBEDTLS_HAVE_TIME
 #define MBEDTLS_HAVE_TIME_DATE
+#define MBEDTLS_PLATFORM_TIME_MACRO            espconn_mbedtls_time /**< Default time macro to use, can be undefined. MBEDTLS_HAVE_TIME must be enabled */
+#else
+#undef MBEDTLS_HAVE_TIME
+#undef MBEDTLS_HAVE_TIME_DATE
+#endif
 
 #define MBEDTLS_PLATFORM_MEMORY
 #undef MBEDTLS_PLATFORM_NO_STD_FUNCTIONS
