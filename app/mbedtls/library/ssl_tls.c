@@ -3522,7 +3522,7 @@ static int ssl_parse_record_header( mbedtls_ssl_context *ssl )
     if( ssl->in_msglen > MBEDTLS_SSL_BUFFER_LEN
                          - (size_t)( ssl->in_msg - ssl->in_buf ) )
     {
-        MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length" ) );
+        MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length: in_msglen=%d", ssl->in_msglen ) );
         return( MBEDTLS_ERR_SSL_INVALID_RECORD );
     }
 
@@ -3532,7 +3532,7 @@ static int ssl_parse_record_header( mbedtls_ssl_context *ssl )
         if( ssl->in_msglen < 1 ||
             ssl->in_msglen > MBEDTLS_SSL_MAX_CONTENT_LEN )
         {
-            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length" ) );
+            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length: in_msglen=%d", ssl->in_msglen ) );
             return( MBEDTLS_ERR_SSL_INVALID_RECORD );
         }
     }
@@ -3540,7 +3540,7 @@ static int ssl_parse_record_header( mbedtls_ssl_context *ssl )
     {
         if( ssl->in_msglen < ssl->transform_in->minlen )
         {
-            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length" ) );
+            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length: in_msglen=%d", ssl->in_msglen ) );
             return( MBEDTLS_ERR_SSL_INVALID_RECORD );
         }
 
@@ -3561,7 +3561,7 @@ static int ssl_parse_record_header( mbedtls_ssl_context *ssl )
             ssl->in_msglen > ssl->transform_in->minlen +
                              MBEDTLS_SSL_MAX_CONTENT_LEN + 256 )
         {
-            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length" ) );
+            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length: in_msglen=%d", ssl->in_msglen ) );
             return( MBEDTLS_ERR_SSL_INVALID_RECORD );
         }
 #endif
@@ -3685,7 +3685,7 @@ static int ssl_prepare_record_content( mbedtls_ssl_context *ssl )
 
         if( ssl->in_msglen > MBEDTLS_SSL_MAX_CONTENT_LEN )
         {
-            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length" ) );
+            MBEDTLS_SSL_DEBUG_MSG( 1, ( "bad message length: in_msglen=%d", ssl->in_msglen ) );
             return( MBEDTLS_ERR_SSL_INVALID_RECORD );
         }
     }
@@ -4451,6 +4451,7 @@ int mbedtls_ssl_parse_certificate( mbedtls_ssl_context *ssl )
 
         if( ret != 0 )
         {
+            MBEDTLS_SSL_DEBUG_MSG( 1, ( "x509_verify_cert flags: %d", ssl->session_negotiate->verify_result ) );
             MBEDTLS_SSL_DEBUG_RET( 1, "x509_verify_cert", ret );
         }
 
