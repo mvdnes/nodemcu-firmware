@@ -150,10 +150,6 @@ void nodemcu_init(void)
         return;
     }
 
-#if defined ( CLIENT_SSL_ENABLE ) && defined ( SSL_BUFFER_SIZE )
-    espconn_secure_set_size(ESPCONN_CLIENT, SSL_BUFFER_SIZE);
-#endif
-
 #ifdef BUILD_SPIFFS
     if (!vfs_mount("/FLASH", 0)) {
         // Failed to mount -- try reformat
