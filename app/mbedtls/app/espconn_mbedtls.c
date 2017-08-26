@@ -1282,7 +1282,7 @@ int mbedtls_x509_test(int verbose,  char *ca_crt,  size_t ca_crt_len, char *cli_
 #endif /* MBEDTLS_CERTS_C && MBEDTLS_SHA1_C */
 }
 
-#if 0
+#if 1
 #include "rtc/rtctime.h"
 time_t espconn_mbedtls_time(time_t *timer)
 {
