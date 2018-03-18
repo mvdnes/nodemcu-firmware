@@ -50,7 +50,7 @@
 
 #define DEBUG_BUF_SIZE      512
 
-static int debug_threshold = 2;
+static int debug_threshold = 0;
 
 void mbedtls_debug_set_threshold( int threshold )
 {
